@@ -1,15 +1,15 @@
 import { useEffect, useReducer } from "react";
-import Main from "./components/Main";
-import Header from "./components/Header";
 import "./App.css";
-import Loader from "./components/Loader";
 import Error from "./components/Error";
-import StartScreen from "./components/StartScreen";
-import Question from "./components/Question";
-import Progress from "./components/Progress";
-import NextQuestion from "./components/NextQuestion";
 import Finished from "./components/Finished";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Loader from "./components/Loader";
+import Main from "./components/Main";
+import NextQuestion from "./components/NextQuestion";
+import Progress from "./components/Progress";
+import Question from "./components/Question";
+import StartScreen from "./components/StartScreen";
 import Timer from "./components/Timer";
 
 const Timersecs = 30;
@@ -40,7 +40,7 @@ function reducer(state, action) {
         time: Timersecs * state.questions.length,
       };
 
-    case "chooseAnswer":
+    case "chooseAnswer": {
       const question = state.questions[state.index];
       return {
         ...state,
@@ -50,6 +50,7 @@ function reducer(state, action) {
             ? state.point + question.points
             : state.point,
       };
+    }
 
     case "nextQuestion":
       return { ...state, index: state.index + 1, chosenAnswer: null };
@@ -82,7 +83,7 @@ function reducer(state, action) {
   }
 }
 
-export function App() {
+export default function App() {
   const [
     { questions, status, index, chosenAnswer, time, point, highscore },
     dispatch,
